@@ -2,26 +2,255 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+/* !=============== text typing ============== */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.typing-text {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  display: inline-block;
+  animation: typing 0.1s steps(30, end) forwards;
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* !=============== feature ============== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+.animate-fade-in-up {
+  animation: fadeInUp 2s ease-out;
+}
+
+/* !=============== menu1 item ============== */
+/* Keyframes for sliding in from the side */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Applied to the component */
+.slide-in-left {
+  animation: slideInFromLeft 1s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 1s ease-out;
+}
+
+/* Optional: Initial hidden state */
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+}
+/* !=============== menu2 item ============== */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slide-in-left {
+  animation: slideInFromLeft 1s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInFromRight 1s ease-out;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+}
+
+/* !=============== about ============== */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 1s ease-out;
+}
+
+.hidden {
+  opacity: 1;
+}
+
+ /*! =============== move up down ============== */
+ 
+ @keyframes move-up-down {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes move-up-down-reverse {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+html,body {
+  scroll-behavior: smooth;
+}
+.animate-move-up-down {
+  animation: move-up-down 8s ease-in-out infinite;
+}
+
+.animate-move-up-down-reverse {
+  animation: move-up-down-reverse 8s ease-in-out infinite;
+}
+/*! =============== card slit ============== */
+/* Custom Swiper navigation button styles */
+/* .swiper-button-next, .swiper-button-prev {
+  @apply text-white; /* Tailwind text color */
+/* } */
+
+/* Custom Swiper pagination dot styles */
+/* .swiper-pagination-bullet {
+  @apply bg-white; /* Tailwind background color */
+/* } */
+/* 
+.swiper-pagination-bullet-active {
+  @apply bg-primary /* Tailwind background color for active dot */
+/* }   */ 
+
+/*! =============== bullet ============== */
+/* .swiper-pagination-bullet {
+  @apply w-4 h-4 bg-transparent border-2 bg-white opacity-60 transition-opacity duration-300;
+}
+
+.swiper-pagination-bullet-active {
+  @apply bg-white opacity-100;
+} */
+/*! =============== animation for card slider ============== */
+/* Add this to your global CSS or a module CSS file */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.custom-swiper-button-prev,
+.custom-swiper-button-next {
+  opacity: 0; /* Start as hidden */
+  transform: translateY(20px); /* Start off screen */
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.custom-swiper-button-prev.visible,
+.custom-swiper-button-next.visible {
+  opacity: 1; /* Fully visible */
+  transform: translateY(0); /* Move to final position */
+}
+
+/*! =============== footer ============== */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 1s ease-out;
+}
+/*! =============== move up down ============== */
+section.hero{
+  @apply block md:grid;
+  grid-template-columns: .4fr .6fr;
+}
+/* 
+select,
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="text"] {
+  @apply block w-full mb-2 rounded-xl;
+  @apply border p-2 border-gray-300 bg-gray-100;
+}
+input[type="email"]:disabled,
+input[type="password"]:disabled,
+input[type="tel"]:disabled,
+input[type="text"]:disabled {
+  @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
+} */
+
+/* button, .button{
+  @apply flex w-full justify-center gap-2 text-gray-700 font-semibold;
+  @apply border border-gray-300 rounded-xl px-6 py-2;
+}
+button[type="submit"], .submit, button.primary{
+  @apply border-primary bg-primary text-white;
+}
+button[type="submit"]:disabled, .submit:disabled{
+  @apply cursor-not-allowed bg-red-400;
+} */
